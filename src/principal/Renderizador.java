@@ -87,7 +87,7 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         //gl.glRotated(rotX1, 0, 0, 1);
        nave.formaNave(gl, glu);
        // gl.glTranslated(20, 0, 0);
-        projetil.formaProjetil(gl, glu);
+//        projetil.formaProjetil(gl, glu);
         planet.renderizaPlaneta(gl, glu, "Terra", 20f);
         planet.renderizaPlaneta(gl, glu, "Mars", 20f);;
     }
@@ -104,43 +104,43 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
 
     @Override
     public void keyPressed(KeyEvent ke) {
-        switch (ke.getKeyCode()){
-            case KeyEvent.VK_LEFT:
-                movX--;
-                rotX1=15;
-                break;
-            case KeyEvent.VK_RIGHT:
-                movX++;
-                rotX1=15;
-                break;
-            case KeyEvent.VK_UP:
-                movY++;
-                break;
-            case KeyEvent.VK_DOWN:
-                movX--;
-                break;
-        }
+//        switch (ke.getKeyCode()){
+//            case KeyEvent.VK_LEFT:
+//                movX--;
+//                rotX1=15;
+//                break;
+//            case KeyEvent.VK_RIGHT:
+//                movX++;
+//                rotX1=15;
+//                break;
+//            case KeyEvent.VK_UP:
+//                movY++;
+//                break;
+//            case KeyEvent.VK_DOWN:
+//                movX--;
+//                break;
+//        }
         glDrawable.display();
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
-        switch (ke.getKeyCode()){
-            case KeyEvent.VK_LEFT:
-                movX--;
-                rotX1=0;
-                break;
-            case KeyEvent.VK_RIGHT:
-                movX++;
-                rotX1=15;
-                break;
-            case KeyEvent.VK_UP:
-                movY++;
-                break;
-            case KeyEvent.VK_DOWN:
-                movX--;
-                break;
-        }
+//        switch (ke.getKeyCode()){
+//            case KeyEvent.VK_LEFT:
+//                movX--;
+//                rotX1=0;
+//                break;
+//            case KeyEvent.VK_RIGHT:
+//                movX++;
+//                rotX1=15;
+//                break;
+//            case KeyEvent.VK_UP:
+//                movY++;
+//                break;
+//            case KeyEvent.VK_DOWN:
+//                movX--;
+//                break;
+//        }
     }
     
 }
