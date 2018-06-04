@@ -92,7 +92,7 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         gl.glTranslatef(movX, movY, movZ);
         gl.glRotatef(15,rotY1,0,rotX1);
         nave.formaNave(gl, glu);
-//        projetil.formaProjetil(gl, glu);
+        projetil.formaProjetil(gl, glu);
         
     }
 
@@ -110,19 +110,23 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
     public void keyPressed(KeyEvent ke) {
         switch (ke.getKeyCode()){
             case KeyEvent.VK_LEFT:
-                movX-=.8;
+            case KeyEvent.VK_A:
+                movX-=.5;
                 rotX1=1;
                 break;
             case KeyEvent.VK_RIGHT:
-                movX+=.8;
+            case KeyEvent.VK_D:
+                movX+=.5;
                 rotX1=-1;
                 break;
             case KeyEvent.VK_UP:
-                movY+=.8;
+            case KeyEvent.VK_W:
+                movY+=.5;
                 rotY1=1;
                 break;
             case KeyEvent.VK_DOWN:
-                movY-=.8;
+            case KeyEvent.VK_S:
+                movY-=.5;
                 rotY1=-1;
                 break;
         }
@@ -133,15 +137,20 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
     public void keyReleased(KeyEvent ke) {
         switch (ke.getKeyCode()){
             case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_A:
                 rotX1=0; 
                break;
             case KeyEvent.VK_RIGHT:
+            case KeyEvent.VK_D:
                 rotX1=0;
                 break;
             case KeyEvent.VK_UP:
+            case KeyEvent.VK_W:
+
                 rotY1=0;
                 break;
             case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_S:    
                 rotY1=0;
                 break;
             case KeyEvent.VK_ESCAPE:
@@ -153,6 +162,7 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         movZ -=2;
         obsZ+=2;
     }
+    
     
 }
 /*

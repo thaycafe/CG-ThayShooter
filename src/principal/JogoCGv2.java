@@ -43,7 +43,7 @@ public class JogoCGv2 implements GLEventListener {
         canvas.addMouseListener((MouseListener) renderizador);
         canvas.addKeyListener((KeyListener) renderizador);
         telaPrincipal.setVisible(true);
-        FPSAnimator animator = new FPSAnimator(canvas, 2);
+        FPSAnimator animator = new FPSAnimator(canvas, 50);
         animator.start();
         canvas.requestFocus();
     }
