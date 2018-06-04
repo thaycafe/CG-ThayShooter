@@ -21,7 +21,7 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
     private GLUT glut;
     private GLAutoDrawable glDrawable;
     private double angulo, aspecto;
-    private float rotX, rotY, obsZ, movX, movY, rotX1;
+    private float rotX, rotY, obsZ, movX, movY, rotX1, movZ, rotY1;
     private boolean luz;
     Nave nave = new Nave();
     Planeta planet = new Planeta();
@@ -34,9 +34,11 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         aspecto = 1;
         rotX = 0;
         rotY = 0;
-        obsZ = 200;
+        obsZ = -200;
         movX=0;
         movY=0;
+        rotX1 = 0;
+        rotY1 = 0;
     }
 
     @Override
@@ -61,7 +63,7 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
     public void posicionaObservador() {
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
-        gl.glTranslatef(0, 0, -obsZ);
+        gl.glTranslatef(0, 0, obsZ);
         gl.glRotatef(rotX, 1, 0, 0);
         gl.glRotatef(rotY, 0, 1, 0);
     }
@@ -84,12 +86,14 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         gl.glLoadIdentity();
 
         especificaParametrosVisualizacao();
-        //gl.glRotated(rotX1, 0, 0, 1);
-       nave.formaNave(gl, glu);
-       // gl.glTranslated(20, 0, 0);
-//        projetil.formaProjetil(gl, glu);
+        movimento();
         planet.renderizaPlaneta(gl, glu, "Terra", 20f);
         planet.renderizaPlaneta(gl, glu, "Mars", 20f);;
+        gl.glTranslatef(movX, movY, movZ);
+        gl.glRotatef(15,rotY1,0,rotX1);
+        nave.formaNave(gl, glu);
+//        projetil.formaProjetil(gl, glu);
+        
     }
 
     @Override
@@ -104,43 +108,50 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
 
     @Override
     public void keyPressed(KeyEvent ke) {
-//        switch (ke.getKeyCode()){
-//            case KeyEvent.VK_LEFT:
-//                movX--;
-//                rotX1=15;
-//                break;
-//            case KeyEvent.VK_RIGHT:
-//                movX++;
-//                rotX1=15;
-//                break;
-//            case KeyEvent.VK_UP:
-//                movY++;
-//                break;
-//            case KeyEvent.VK_DOWN:
-//                movX--;
-//                break;
-//        }
+        switch (ke.getKeyCode()){
+            case KeyEvent.VK_LEFT:
+                movX-=.8;
+                rotX1=1;
+                break;
+            case KeyEvent.VK_RIGHT:
+                movX+=.8;
+                rotX1=-1;
+                break;
+            case KeyEvent.VK_UP:
+                movY+=.8;
+                rotY1=1;
+                break;
+            case KeyEvent.VK_DOWN:
+                movY-=.8;
+                rotY1=-1;
+                break;
+        }
         glDrawable.display();
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
-//        switch (ke.getKeyCode()){
-//            case KeyEvent.VK_LEFT:
-//                movX--;
-//                rotX1=0;
-//                break;
-//            case KeyEvent.VK_RIGHT:
-//                movX++;
-//                rotX1=15;
-//                break;
-//            case KeyEvent.VK_UP:
-//                movY++;
-//                break;
-//            case KeyEvent.VK_DOWN:
-//                movX--;
-//                break;
-//        }
+        switch (ke.getKeyCode()){
+            case KeyEvent.VK_LEFT:
+                rotX1=0; 
+               break;
+            case KeyEvent.VK_RIGHT:
+                rotX1=0;
+                break;
+            case KeyEvent.VK_UP:
+                rotY1=0;
+                break;
+            case KeyEvent.VK_DOWN:
+                rotY1=0;
+                break;
+            case KeyEvent.VK_ESCAPE:
+                System.exit(0);
+        }
+    }
+    
+    public void movimento(){
+        movZ -=2;
+        obsZ+=2;
     }
     
 }

@@ -77,6 +77,5 @@ public class Planeta {
 
     public void posicaoAleatoria() {
         Random gerador = new Random();
-        posicaoX = gerador.nextInt(200) - 100;
     }
 }

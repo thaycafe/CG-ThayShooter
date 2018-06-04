@@ -30,6 +30,8 @@ public void formaProjetil(GL2 gl, GLU glu) {
         texturaProjetil.enable(gl);
         texturaProjetil.bind(gl);
         GLUquadric cafe = glu.gluNewQuadric();
+        
+        gl.glPushMatrix();
         gl.glTranslatef(0f, 0f, -5f);
         gl.glScalef(-.1f, -.2f, .2f);
         glu.gluQuadricTexture(cafe, true);
@@ -39,14 +41,15 @@ public void formaProjetil(GL2 gl, GLU glu) {
         glu.gluCylinder(cafe, 5.5f, 5f, 20f, 10, 50);
         glu.gluDeleteQuadric(cafe);
 
-        gl.glPushMatrix();
-        gl.glTranslatef(0f, 0f, -5f);
-        glu.gluQuadricTexture(cafe, true);
-        glu.gluQuadricDrawStyle(cafe, GLU.GLU_FILL);
-        glu.gluQuadricNormals(cafe, GLU.GLU_FLAT);
-        glu.gluQuadricOrientation(cafe, GLU.GLU_OUTSIDE);
-        glu.gluCylinder(cafe,.5, 5.3, 5,50, 50);
-        glu.gluDeleteQuadric(cafe);
+            gl.glPushMatrix();
+            gl.glTranslatef(0f, 0f, -5f);
+            glu.gluQuadricTexture(cafe, true);
+            glu.gluQuadricDrawStyle(cafe, GLU.GLU_FILL);
+            glu.gluQuadricNormals(cafe, GLU.GLU_FLAT);
+            glu.gluQuadricOrientation(cafe, GLU.GLU_OUTSIDE);
+            glu.gluCylinder(cafe,.5, 5.3, 5,50, 50);
+            glu.gluDeleteQuadric(cafe);
+            gl.glPopMatrix();
         gl.glPopMatrix();
         
                 texturaProjetil.disable(gl);
