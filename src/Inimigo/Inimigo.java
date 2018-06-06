@@ -27,7 +27,8 @@ public class Inimigo {
     }
 
     public void renderizaNave(GL2 gl, GLU glu) {
-
+        texturaNave.enable(gl);
+        texturaNave.bind(gl);
 
         gl.glPushMatrix();
         gl.glTranslatef(-20f, 0f, 0f);
@@ -44,6 +45,8 @@ public class Inimigo {
         turbina(gl, glu);
         gl.glPopMatrix();
         gl.glPopMatrix();
+        
+        texturaNave.disable(gl);
 
     }
 

@@ -70,6 +70,7 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         gl.glRotatef(rotX, 1, 0, 0);
         gl.glRotatef(rotY, 0, 1, 0);
     }
+    
     public void especificaParametrosVisualizacao() {
         gl.glMatrixMode(GL2.GL_PROJECTION);
         gl.glLoadIdentity();
