@@ -1,6 +1,7 @@
 
 package principal;
 
+import Inimigo.Inimigo;
 import Nave.Nave;
 import Nave.Projetil;
 import Planeta.Planeta;
@@ -26,6 +27,7 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
     Nave nave = new Nave();
     Planeta planet = new Planeta();
     Projetil projetil = new Projetil();
+    Inimigo inimigo = new Inimigo();
     
   
     
@@ -56,6 +58,7 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
          nave.texturaNave();
          planet.carregarTextura();
          projetil.textura();
+         inimigo.texturaInimigo();
          
         
     }
@@ -88,7 +91,8 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         especificaParametrosVisualizacao();
         movimento();
         planet.renderizaPlaneta(gl, glu, "Terra", 20f);
-        planet.renderizaPlaneta(gl, glu, "Mars", 20f);;
+        planet.renderizaPlaneta(gl, glu, "Mars", 20f);
+        inimigo.renderizaNave(gl, glu);
         gl.glTranslatef(movX, movY, movZ);
         gl.glRotatef(15,rotY1,0,rotX1);
         nave.formaNave(gl, glu);
