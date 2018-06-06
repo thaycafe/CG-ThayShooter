@@ -21,7 +21,7 @@ public class JogoCGv2 implements GLEventListener {
     public JogoCGv2() {
 
         JFrame telaPrincipal = new JFrame("ThayShooter");
-        telaPrincipal.setBounds(50, 100, 800, 800);
+        telaPrincipal.setBounds(50, 100, 1600, 900);
         telaPrincipal.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         BorderLayout layout = new BorderLayout();

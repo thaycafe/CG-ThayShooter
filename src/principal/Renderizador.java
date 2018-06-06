@@ -106,39 +106,44 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
 
     @Override
     public void keyTyped(KeyEvent ke) {
-        
+       
     }
 
     @Override
     public void keyPressed(KeyEvent ke) {
         switch (ke.getKeyCode()) {
+            
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
-                movX -= .5;
+                movX -= 2.5;
                 rotX1 = 1;
                 break;
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
-                movX += .5;
+                movX += 2.5;
                 rotX1 = -1;
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                movY += .5;
+                movY += 2.5;
                 rotY1 = 1;
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
-                movY -= .5;
+                movY -= 2.5;
                 rotY1 = -1;
                 break;
-            case KeyEvent.VK_ESCAPE:
+            case KeyEvent.VK_P:
                 pause = !pause;
                 if (pause) {
                     animator.pause();
                 } else {
                     animator.resume();
                 }
+                break;
+            case KeyEvent.VK_ESCAPE:
+                System.exit(0);
+                break;
         }
         glDrawable.display();
     }
