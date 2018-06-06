@@ -16,7 +16,7 @@ import javax.swing.WindowConstants;
 
 public class JogoCGv2 implements GLEventListener {
 
-        private Renderizador renderizador;
+    private Renderizador renderizador;
 
     public JogoCGv2() {
 
@@ -35,21 +35,22 @@ public class JogoCGv2 implements GLEventListener {
         caps.setGreenBits(8);
         caps.setAlphaBits(8);
 
-        renderizador =  new Renderizador();
-
         GLCanvas canvas = new GLCanvas(caps);
+        FPSAnimator animator = new FPSAnimator(canvas, 50);
+        renderizador = new Renderizador(animator);
+
         telaPrincipal.add(canvas, BorderLayout.CENTER);
         canvas.addGLEventListener((GLEventListener) renderizador);
         canvas.addMouseListener((MouseListener) renderizador);
         canvas.addKeyListener((KeyListener) renderizador);
         telaPrincipal.setVisible(true);
-        FPSAnimator animator = new FPSAnimator(canvas, 50);
         animator.start();
         canvas.requestFocus();
     }
 
     public static void main(String[] args) {
         JogoCGv2 app = new JogoCGv2();
+
     }
 
     @Override

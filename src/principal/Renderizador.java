@@ -1,4 +1,3 @@
-
 package principal;
 
 import Inimigo.Inimigo;
@@ -12,11 +11,12 @@ import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.glu.GLU;
+import com.jogamp.opengl.util.FPSAnimator;
 import com.jogamp.opengl.util.gl2.GLUT;
 import java.awt.event.KeyEvent;
 
 public class Renderizador extends MouseAdapter implements GLEventListener, KeyListener {
-    
+
     private GL2 gl;
     private GLU glu;
     private GLUT glut;
@@ -24,23 +24,24 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
     private double angulo, aspecto;
     private float rotX, rotY, obsZ, movX, movY, rotX1, movZ, rotY1;
     private boolean luz;
+    FPSAnimator animator;
+    public boolean pause;
     Nave nave = new Nave();
     Planeta planet = new Planeta();
     Projetil projetil = new Projetil();
     Inimigo inimigo = new Inimigo();
-    
-  
-    
-    public Renderizador() {
+
+    public Renderizador(FPSAnimator animator) {
         angulo = 50;
         aspecto = 1;
         rotX = 0;
         rotY = 0;
         obsZ = -200;
-        movX=0;
-        movY=0;
+        movX = 0;
+        movY = 0;
         rotX1 = 0;
         rotY1 = 0;
+        this.animator = animator;
     }
 
     @Override
@@ -52,17 +53,14 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
 
         gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         gl.glEnable(GL.GL_DEPTH_TEST);
-        
-        
-        
-         nave.texturaNave();
-         planet.carregarTextura();
-         projetil.textura();
-         inimigo.texturaInimigo();
-         
-        
+
+        nave.texturaNave();
+        planet.carregarTextura();
+        projetil.textura();
+        inimigo.texturaInimigo();
+
     }
-    
+
     public void posicionaObservador() {
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
@@ -70,7 +68,7 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         gl.glRotatef(rotX, 1, 0, 0);
         gl.glRotatef(rotY, 0, 1, 0);
     }
-    
+
     public void especificaParametrosVisualizacao() {
         gl.glMatrixMode(GL2.GL_PROJECTION);
         gl.glLoadIdentity();
@@ -78,7 +76,6 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
 
         posicionaObservador();
     }
-
 
     @Override
     public void dispose(GLAutoDrawable glad) {
@@ -95,10 +92,10 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         planet.renderizaPlaneta(gl, glu, "Mars", 20f);
         inimigo.renderizaNave(gl, glu);
         gl.glTranslatef(movX, movY, movZ);
-        gl.glRotatef(15,rotY1,0,rotX1);
+        gl.glRotatef(15, rotY1, 0, rotX1);
         nave.formaNave(gl, glu);
         projetil.formaProjetil(gl, glu);
-        
+
     }
 
     @Override
@@ -109,66 +106,72 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
 
     @Override
     public void keyTyped(KeyEvent ke) {
+        
     }
 
     @Override
     public void keyPressed(KeyEvent ke) {
-        switch (ke.getKeyCode()){
+        switch (ke.getKeyCode()) {
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
-                movX-=.5;
-                rotX1=1;
+                movX -= .5;
+                rotX1 = 1;
                 break;
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
-                movX+=.5;
-                rotX1=-1;
+                movX += .5;
+                rotX1 = -1;
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                movY+=.5;
-                rotY1=1;
+                movY += .5;
+                rotY1 = 1;
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
-                movY-=.5;
-                rotY1=-1;
+                movY -= .5;
+                rotY1 = -1;
                 break;
+            case KeyEvent.VK_ESCAPE:
+                pause = !pause;
+                if (pause) {
+                    animator.pause();
+                } else {
+                    animator.resume();
+                }
         }
         glDrawable.display();
     }
 
     @Override
     public void keyReleased(KeyEvent ke) {
-        switch (ke.getKeyCode()){
+        switch (ke.getKeyCode()) {
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
-                rotX1=0; 
-               break;
+                rotX1 = 0;
+                break;
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
-                rotX1=0;
+                rotX1 = 0;
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
 
-                rotY1=0;
+                rotY1 = 0;
                 break;
             case KeyEvent.VK_DOWN:
-            case KeyEvent.VK_S:    
-                rotY1=0;
+            case KeyEvent.VK_S:
+                rotY1 = 0;
                 break;
-            case KeyEvent.VK_ESCAPE:
-                System.exit(0);
+
         }
     }
-    
-    public void movimento(){
-        movZ -=2;
-        obsZ+=2;
+
+    public void movimento() {
+        movZ -= 2;
+        obsZ += 2;
     }
-    
-    
+
 }
 /*
 public void keyPressed(KeyEvent e) {
@@ -201,4 +204,4 @@ public void keyPressed(KeyEvent e) {
         glDrawable.display();
     }
 
-*/
+ */
