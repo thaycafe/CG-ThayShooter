@@ -4,6 +4,7 @@ import Inimigo.Inimigo;
 import Nave.Nave;
 import Nave.Projetil;
 import Planeta.Planeta;
+import java.util.Random;
 import com.jogamp.opengl.GL;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -24,6 +25,7 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
     private double angulo, aspecto;
     private float rotX, rotY, obsZ, movX, movY, rotX1, movZ, rotY1;
     private boolean luz;
+    private Random random;
     FPSAnimator animator;
     public boolean pause;
     Nave nave = new Nave();
@@ -42,6 +44,7 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         rotX1 = 0;
         rotY1 = 0;
         this.animator = animator;
+        random = new Random();
     }
 
     @Override
@@ -85,12 +88,25 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
     public void display(GLAutoDrawable glad) {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
-
+        inimigo.timer++;
         especificaParametrosVisualizacao();
         movimento();
-        planet.renderizaPlaneta(gl, glu, "Terra", 20f);
-        planet.renderizaPlaneta(gl, glu, "Mars", 20f);
+
+        gl.glPushMatrix();
+
+        planet.renderizaPlaneta(gl, glu, "Terra");
+        planet.renderizaPlaneta(gl, glu, "Mars");
+        gl.glPopMatrix();
+
+        gl.glPushMatrix();
         inimigo.renderizaNave(gl, glu);
+        gl.glTranslatef(inimigo.posX, inimigo.posY, inimigo.posZ);
+        inimigo.posZ += 1;
+        if (inimigo.timer == 200) {
+            inimigo.reiniciar((random.nextInt(200) - 100), (random.nextInt(200) - 100), (movZ - 300));
+        }
+        gl.glPopMatrix();
+
         gl.glTranslatef(movX, movY, movZ);
         gl.glRotatef(15, rotY1, 0, rotX1);
         nave.formaNave(gl, glu);
@@ -106,31 +122,30 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
 
     @Override
     public void keyTyped(KeyEvent ke) {
-       
+
     }
 
     @Override
     public void keyPressed(KeyEvent ke) {
         switch (ke.getKeyCode()) {
-            
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
-                movX -= 2.5;
+                movX -= 4;
                 rotX1 = 1;
                 break;
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
-                movX += 2.5;
+                movX += 4;
                 rotX1 = -1;
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                movY += 2.5;
+                movY += 4;
                 rotY1 = 1;
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
-                movY -= 2.5;
+                movY -= 4;
                 rotY1 = -1;
                 break;
             case KeyEvent.VK_P:
@@ -161,14 +176,12 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-
                 rotY1 = 0;
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
                 rotY1 = 0;
                 break;
-
         }
     }
 

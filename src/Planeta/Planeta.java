@@ -18,11 +18,18 @@ public class Planeta {
     private GLU glu;
     private float planetZ;
     private Texture textura, texturaTerra, texturaMars;
-    private int posicaoX;
+    public float posZ, posX, posY;
 
     /**
      * Construtor da classe Renderer que não recebe parâmetros.
-     */   
+     */
+    public Planeta() {
+        Random gerador = new Random();
+        posX = 10;
+        posY = 20;
+        posZ = -200;
+
+    }
 
     public void carregarTextura() {
 
@@ -41,17 +48,16 @@ public class Planeta {
         }
     }
 
-    public void renderizaPlaneta(GL2 gl, GLU glu, String txt, float Y) {
+    public void renderizaPlaneta(GL2 gl, GLU glu, String txt) {
         // Habilita a textura da Terra
 
         habilitarTextura(txt);
-        posicaoAleatoria();
         textura.enable(gl);
         textura.bind(gl);
 
         gl.glPushMatrix();
         // Desloca o objeto
-        gl.glTranslatef(posicaoX, Y, planetZ);
+        gl.glTranslatef(posX, posY, posZ);
         // Desenha a esfera da Terra
         GLUquadric planet = glu.gluNewQuadric();
         glu.gluQuadricTexture(planet, true);
@@ -64,6 +70,7 @@ public class Planeta {
         textura.disable(gl);
     }
 
+
     public void habilitarTextura(String text) {
         switch (text) {
             case "Terra":
@@ -75,7 +82,4 @@ public class Planeta {
         }
     }
 
-    public void posicaoAleatoria() {
-        Random gerador = new Random();
-    }
 }

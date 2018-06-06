@@ -2,6 +2,7 @@ package Inimigo;
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLProfile;
+import java.util.Random;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.glu.GLUquadric;
 import com.jogamp.opengl.util.texture.Texture;
@@ -14,6 +15,17 @@ public class Inimigo {
 
     private Texture texturaNave;
     private GLU glu;
+    public int timer;
+    public float posZ, posX, posY;
+    private Random random;
+
+    public Inimigo() {
+        random = new Random();
+        timer = 0;
+        posX = ((random.nextFloat() * 200) - (float) 100);
+        posY = ((random.nextFloat() * 200) - (float) 100);
+        posZ = -200;
+    }
 
     public void texturaInimigo() {
         try {
@@ -27,11 +39,12 @@ public class Inimigo {
     }
 
     public void renderizaNave(GL2 gl, GLU glu) {
+
         texturaNave.enable(gl);
         texturaNave.bind(gl);
 
+        gl.glTranslatef(posX, posY, posZ);
         gl.glPushMatrix();
-        gl.glTranslatef(-20f, 0f, 0f);
         corpo(gl, glu);
         gl.glPushMatrix();
         asas(gl, glu);
@@ -45,9 +58,16 @@ public class Inimigo {
         turbina(gl, glu);
         gl.glPopMatrix();
         gl.glPopMatrix();
-        
+
         texturaNave.disable(gl);
 
+    }
+
+    public void reiniciar(int x, int y, float z) {
+        posX = x;
+        posY = y;
+        posZ = z;
+        timer = 0;
     }
 
     private void corpo(GL2 gl, GLU glu) {
@@ -58,7 +78,7 @@ public class Inimigo {
         glu.gluQuadricDrawStyle(cafe, GLU.GLU_FILL);
         glu.gluQuadricNormals(cafe, GLU.GLU_FLAT);
         glu.gluQuadricOrientation(cafe, GLU.GLU_OUTSIDE);
-        gl.glScalef(1f, .3f, 1f);
+        gl.glScalef(.7f, .7f, .7f);
         glu.gluCylinder(cafe, .1f, 6.3f, 8f, 50, 50);
         gl.glTranslatef(0f, 0f, 13f);
         glu.gluSphere(cafe, 8, 50, 50);
