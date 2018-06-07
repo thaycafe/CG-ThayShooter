@@ -1,5 +1,6 @@
 package principal;
 
+import Asteroide.Asteroide;
 import Inimigo.Inimigo;
 import Nave.Nave;
 import Nave.Projetil;
@@ -25,14 +26,15 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
     private double angulo, aspecto;
     private float rotX, rotY, obsZ, movX, movY, rotX1, movZ, rotY1;
     private boolean luz;
-    private Random random;
+    private Random random, random2, random3;
     FPSAnimator animator;
     public boolean pause;
     Nave nave = new Nave();
     Planeta planet = new Planeta();
     Projetil projetil = new Projetil();
     Inimigo inimigo = new Inimigo();
-
+    Asteroide aster = new Asteroide();
+    
     public Renderizador(FPSAnimator animator) {
         angulo = 50;
         aspecto = 1;
@@ -45,6 +47,8 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         rotY1 = 0;
         this.animator = animator;
         random = new Random();
+        random2 = new Random();
+        random3 = new Random();
     }
 
     @Override
@@ -61,6 +65,7 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         planet.carregarTextura();
         projetil.textura();
         inimigo.texturaInimigo();
+        aster.text();
 
     }
 
@@ -89,9 +94,11 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
         inimigo.timer++;
+        aster.timer2++;
         especificaParametrosVisualizacao();
         movimento();
 
+        gl.glPushMatrix();
         gl.glPushMatrix();
 
         planet.renderizaPlaneta(gl, glu, "Terra");
@@ -106,12 +113,22 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
             inimigo.reiniciar((random.nextInt(200) - 100), (random.nextInt(200) - 100), (movZ - 300));
         }
         gl.glPopMatrix();
+        
+        gl.glPushMatrix(); 
+        aster.Aster(gl, glu);  
+        gl.glTranslatef(aster.X, aster.Y, aster.Z);
+        aster.Z += 1;       
+        if (aster.timer2 == 200) {
+            aster.reinicia((random2.nextInt(200) - 100), (random2.nextInt(200) - 100), (movZ - 300));            
+        }
+        gl.glPopMatrix();
 
         gl.glTranslatef(movX, movY, movZ);
         gl.glRotatef(15, rotY1, 0, rotX1);
         nave.formaNave(gl, glu);
         projetil.formaProjetil(gl, glu);
 
+        gl.glPopMatrix();
     }
 
     @Override
@@ -191,6 +208,39 @@ public class Renderizador extends MouseAdapter implements GLEventListener, KeyLi
     }
 
 }
+/*
+public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_LEFT:
+                rotY--;
+                break;
+            case KeyEvent.VK_RIGHT:
+                rotY++;
+                break;
+            case KeyEvent.VK_UP:
+                rotX++;
+                break;
+            case KeyEvent.VK_DOWN:
+                rotX--;
+                break;
+            case KeyEvent.VK_HOME:
+                obsZ++;
+                break;
+            case KeyEvent.VK_END:
+                obsZ--;
+                break;
+            case KeyEvent.VK_F1:
+                luz = !luz;
+                break;
+            case KeyEvent.VK_ESCAPE:
+                System.exit(0);
+                break;
+        }
+        glDrawable.display();
+    }
+
+ */
+
 /*
 public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
