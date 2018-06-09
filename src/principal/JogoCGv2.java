@@ -37,7 +37,7 @@ public class JogoCGv2 implements GLEventListener {
 
         GLCanvas canvas = new GLCanvas(caps);
         FPSAnimator animator = new FPSAnimator(canvas, 50);
-        renderizador = new Renderizador(animator);
+        renderizador = new Renderizador(animator, telaPrincipal);
 
         telaPrincipal.add(canvas, BorderLayout.CENTER);
         canvas.addGLEventListener((GLEventListener) renderizador);

@@ -14,6 +14,15 @@ import java.io.InputStream;
 public class Projetil {
     
      private Texture texturaProjetil;
+     private float pX,pY, pZ;
+     private boolean ativo;
+     
+     public Projetil(){
+         pX = 0;
+         pY = 0;
+         pZ =0;
+         ativo = false;
+     }
     
     public void textura(){
         try {
@@ -32,7 +41,7 @@ public void formaProjetil(GL2 gl, GLU glu) {
         GLUquadric cafe = glu.gluNewQuadric();
         
         gl.glPushMatrix();
-        gl.glTranslatef(0f, 0f, -5f);
+        gl.glTranslatef(getpX(), getpY(), getpZ());
         gl.glScalef(-.1f, -.2f, .2f);
         glu.gluQuadricTexture(cafe, true);
         glu.gluQuadricDrawStyle(cafe, GLU.GLU_FILL);
@@ -50,8 +59,69 @@ public void formaProjetil(GL2 gl, GLU glu) {
             glu.gluCylinder(cafe,.5, 5.3, 5,50, 50);
             glu.gluDeleteQuadric(cafe);
             gl.glPopMatrix();
+            
         gl.glPopMatrix();
         
                 texturaProjetil.disable(gl);
+    }
+
+    /**
+     * @return the pX
+     */
+    public float getpX() {
+        return pX;
+    }
+
+    /**
+     * @param pX the pX to set
+     */
+    public void setpX(float pX) {
+        this.pX = pX;
+    }
+
+    /**
+     * @return the pY
+     */
+    public float getpY() {
+        return pY;
+    }
+
+    /**
+     * @param pY the pY to set
+     */
+    public void setpY(float pY) {
+        this.pY = pY;
+    }
+
+    /**
+     * @return the pZ
+     */
+    public float getpZ() {
+        return pZ;
+    }
+
+    /**
+     * @param pZ the pZ to set
+     */
+    public void setpZ(float pZ) {
+        this.pZ = pZ;
+    }
+
+    /**
+     * @return the ativo
+     */
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    /**
+     * @param ativo the ativo to set
+     */
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
+    public void movimento(){
+        //pZ-=1;
     }
 }
