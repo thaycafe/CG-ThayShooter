@@ -127,6 +127,11 @@ public class Renderizador  implements GLEventListener, KeyListener, MouseListene
             planet.renderizaPlaneta(gl, glu, "Terra");
             planet.renderizaPlaneta(gl, glu, "Mars");
         gl.glPopMatrix();
+        gl.glPushMatrix();
+            gl.glTranslatef(movX, movY, movZ);
+            gl.glRotatef(15, rotY1, 0, rotX1);
+                nave.formaNave(gl, glu);
+        gl.glPopMatrix();
 
         gl.glPushMatrix();
             inimigo.renderizaNave(gl, glu);
@@ -146,11 +151,7 @@ public class Renderizador  implements GLEventListener, KeyListener, MouseListene
             }
         gl.glPopMatrix();
 
-         gl.glPushMatrix();
-            gl.glTranslatef(movX, movY, movZ);
-            gl.glRotatef(15, rotY1, 0, rotX1);
-                //nave.formaNave(gl, glu);
-        gl.glPopMatrix();
+         
         
        
     }
