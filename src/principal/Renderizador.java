@@ -2,6 +2,8 @@ package principal;
 
 import Asteroide.Asteroide;
 import Inimigo.Inimigo;
+import MenuGameOver.GameOver;
+import MenuStart.MenuStart;
 import Nave.Nave;
 import Nave.Projetil;
 import Planeta.Planeta;
@@ -9,13 +11,16 @@ import java.util.Random;
 import com.jogamp.opengl.GL;
 import java.awt.event.KeyListener;
 import com.jogamp.opengl.GL2;
+import static com.jogamp.opengl.GL2ES3.GL_QUADS;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.util.FPSAnimator;
 import com.jogamp.opengl.util.gl2.GLUT;
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -30,9 +35,15 @@ public class Renderizador  implements GLEventListener, KeyListener, MouseListene
     private GLAutoDrawable glDrawable;
     private double angulo, aspecto;
     private float rotX, rotY, obsZ, movX, movY, rotX1, movZ, rotY1;
-    private boolean luz;
-    private Random random, random2, random3;
+    private boolean luz, menupause, menuGameOver;
+    private Random random, random2, random3, random4, random5;
     private int ctproj;
+    Asteroide aster = new Asteroide();    
+    Asteroide aster2 = new Asteroide();
+    MenuStart menu = new MenuStart();
+    MenuPrincipal princ = new MenuPrincipal();
+    GameOver gameover = new GameOver();
+    private int pont;
     
     JFrame x;
     FPSAnimator animator;
@@ -45,7 +56,6 @@ public class Renderizador  implements GLEventListener, KeyListener, MouseListene
     Projetil proj4 = new Projetil();
     Projetil proj5 = new Projetil();
     Inimigo inimigo = new Inimigo();
-    Asteroide aster = new Asteroide();
     
     public Renderizador(FPSAnimator animator, JFrame x) {
         angulo = 50;
@@ -63,6 +73,9 @@ public class Renderizador  implements GLEventListener, KeyListener, MouseListene
         random = new Random();
         random2 = new Random();
         random3 = new Random();
+        random4 = new Random();
+        random5 = new Random();
+        pont = 0;
     }
 
     @Override
@@ -116,10 +129,49 @@ public class Renderizador  implements GLEventListener, KeyListener, MouseListene
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
         inimigo.timer++;
-        aster.timer2++;
+        aster.timer2++;        
+        aster.timer3++;
+        aster.timer4++;
+        aster.timer5++;
+        pont++;
         especificaParametrosVisualizacao();
         movimento();
-         gl.glPushMatrix();
+        
+        gl.glPushMatrix();
+            if(menuGameOver == true){
+            gl.glPushMatrix();
+                gl.glTranslatef(0, 0, movZ + 100);                                                              
+                gameover.TextGameOver(gl, glut, pont);                              
+            gl.glPopMatrix();
+            gl.glBegin(GL_QUADS);
+            
+            gl.glEnd();
+        }
+        gl.glPopMatrix();
+            
+            
+        gl.glPushMatrix();    
+            gl.glTranslatef(0, 0, movZ);
+            gl.glRasterPos2i(80,80);
+            glut.glutBitmapString(5, "Pontuação: ");
+            gl.glRasterPos2i(110,80);
+            glut.glutBitmapString(5, Integer.toString(pont));
+        gl.glPopMatrix();
+                     
+        gl.glPushMatrix();
+        if(menupause == true){
+            gl.glPushMatrix();
+                gl.glTranslatef(0, 0, movZ + 100);                                                              
+                menu.TextPause(gl, glut, pont);                              
+            gl.glPopMatrix();
+            gl.glBegin(GL_QUADS);
+            
+            gl.glEnd();
+        }
+        gl.glPopMatrix();
+        
+        gl.glPushMatrix();
+        gl.glPushMatrix();
             projeteis();
         gl.glPopMatrix();
 
@@ -142,17 +194,47 @@ public class Renderizador  implements GLEventListener, KeyListener, MouseListene
             }
         gl.glPopMatrix();
         
-        gl.glPushMatrix(); 
-            aster.Aster(gl, glu);  
-            gl.glTranslatef(aster.X, aster.Y, aster.Z);
-            aster.Z += 1;       
-            if (aster.timer2 == 50) {
-                aster.reinicia((random2.nextInt(200) - 100), (random2.nextInt(200) - 100), (movZ - 300));            
-            }
-        gl.glPopMatrix();
+        gl.glPushMatrix();
+        gl.glPushMatrix();
+            gl.glPushMatrix();            
+                gl.glPushMatrix(); 
+                    aster.Aster(gl, glu);  
+                    gl.glTranslatef(aster.X, aster.Y, aster.Z);
+                    aster.Z += 2;       
+                    if (aster.timer2 == 105){
+                        aster.reinicia((random2.nextInt(200) - 100), (random2.nextInt(200) - 100), (movZ - 300));            
+                    }                   
+                gl.glPopMatrix();
 
-         
-        
+                gl.glPushMatrix();
+                aster.Aster2(gl, glu);
+                gl.glTranslatef(aster.X2, aster.Y2, aster.Z2);
+                aster.Z2 += 3;       
+                if (aster.timer3 == 135) {
+                    aster.reinicia2((random3.nextInt(200) - 100), (random3.nextInt(200) - 100), (movZ - 300));            
+                }
+                gl.glPopMatrix();
+
+                gl.glPushMatrix();
+                aster.Aster3(gl, glu);
+                gl.glTranslatef(aster.X3, aster.Y3, aster.Z3);
+                aster.Z3 += 1;       
+                if (aster.timer4 == 125) {
+                    aster.reinicia3((random4.nextInt(200) - 100), (random4.nextInt(200) - 100), (movZ - 300));            
+                }
+                gl.glPopMatrix();
+
+                gl.glPushMatrix();
+                aster.Aster4(gl, glu);
+                gl.glTranslatef(aster.X4, aster.Y4, aster.Z4);
+                aster.Z4 += 2;       
+                if (aster.timer5 == 120) {
+                    aster.reinicia4((random5.nextInt(200) - 100), (random5.nextInt(200) - 100), (movZ - 300));            
+                }
+                gl.glPopMatrix();
+            gl.glPopMatrix();
+        gl.glPopMatrix();      
+        gl.glPopMatrix();
        
     }
      public void movimento() {
@@ -222,34 +304,47 @@ public class Renderizador  implements GLEventListener, KeyListener, MouseListene
         switch (ke.getKeyCode()) {
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
-                movX -= 4;
-                rotX1 = 1;
+                if(menupause == false){
+                    movX -= 4;
+                    rotX1 = 1;
+                }
                 break;
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
-                movX += 4;
-                rotX1 = -1;
+                if(menupause == false){
+                    movX += 4;
+                    rotX1 = -1;
+                }
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                movY += 4;
-                rotY1 = 1;
+                if(menupause == false){    
+                    movY += 4;
+                    rotY1 = 1;
+                }               
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
-                movY -= 4;
-                rotY1 = -1;
+                if(menupause == false){
+                    movY -= 4;
+                    rotY1 = -1;
+                }
                 break;
             case KeyEvent.VK_P:
                 pause = !pause;
                 if (pause) {
                     animator.pause();
+                    menupause = true;
                 } else {
+                    menupause = false;
                     animator.resume();
                 }
                 break;
             case KeyEvent.VK_ESCAPE:
                 System.exit(0);
+                break;
+            case KeyEvent.VK_0:
+                menuGameOver = true;
                 break;
         }
         glDrawable.display();
@@ -283,6 +378,58 @@ public class Renderizador  implements GLEventListener, KeyListener, MouseListene
     public void mouseClicked(MouseEvent me) {
         statusproj(ctproj);
         ctproj++;
+        System.out.printf("X: %d", me.getX());
+        System.out.printf("Y: %d", me.getY());
+        System.out.println("");
+        if(menupause == true){
+            if(me.getX() >= 604 && me.getX() <= 704 && me.getY() >= 227 && me.getY() <= 258){
+                animator.resume();
+                menupause = false;
+            }
+            
+            if(me.getX() >= 585 && me.getX() <= 708 && me.getY() >= 291 && me.getY() <= 316){
+                System.gc();
+                for(Window window : Window.getWindows()){
+                    window.dispose();
+                }                
+                JogoCGv2 app = new JogoCGv2();                
+            }                    
+            
+            if(me.getX() >= 580 && me.getX() <= 634 && me.getY() >= 369 && me.getY() <= 396){;
+                System.exit(0);
+            }            
+        }
+        
+        if(menuGameOver == true){
+            animator.pause();
+            if(me.getX() >= 509 && me.getX() <= 704 && me.getY() >= 206 && me.getY() <= 237){
+                System.gc();
+                for(Window window : Window.getWindows()){
+                    window.dispose();
+                }
+                System.out.println("deu certo");                
+                JogoCGv2 app = new JogoCGv2();                
+            }
+            if(me.getX() >= 503 && me.getX() <= 563 && me.getY() >= 367 && me.getY() <= 400){;
+                System.out.println("deu certo 2");
+                System.exit(0);
+            }
+            if(me.getX() >= 522 && me.getX() <= 788 && me.getY() >= 305 && me.getY() <= 343){;
+                System.gc();
+                for(Window window : Window.getWindows()){
+                    window.dispose();
+                }
+                MenuPrincipal obj = new MenuPrincipal();
+                obj.setSize(500, 300);      
+                obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                obj.setVisible(true); 
+                obj.getContentPane().setBackground(Color.black);
+                obj.setLocationRelativeTo(null);
+            }
+            
+            
+        }
+        
     }
 
     @Override

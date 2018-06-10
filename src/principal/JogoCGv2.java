@@ -9,6 +9,7 @@ import com.jogamp.opengl.util.FPSAnimator;
 
 import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
@@ -49,7 +50,12 @@ public class JogoCGv2 implements GLEventListener {
     }
 
     public static void main(String[] args) {
-        JogoCGv2 app = new JogoCGv2();
+        MenuPrincipal obj = new MenuPrincipal();
+        obj.setSize(500, 300);      
+        obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        obj.setVisible(true); 
+        obj.getContentPane().setBackground(Color.black);
+        obj.setLocationRelativeTo(null);
 
     }
 
