@@ -15,7 +15,14 @@ public class Nave {
     
         private Texture texturaNave, texturaFoguinho, texturaIron, texturaNave2, texturaTurbina;
         private GLU glu;
+        public float nX, nY,nZ;
 
+        public Nave(){
+            this.nX=0;
+            this.nY=0;
+            this.nZ=0;
+        }
+        
     public void texturaNave(){
         try {
             InputStream streamNave = getClass().getResourceAsStream("texturaNave.jpg");

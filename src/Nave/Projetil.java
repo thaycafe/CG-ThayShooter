@@ -14,7 +14,7 @@ import java.io.InputStream;
 public class Projetil {
     
      private Texture texturaProjetil;
-     private float pX,pY, pZ;
+     public float pX,pY, pZ;
      private boolean ativo;
      
      public Projetil(){
