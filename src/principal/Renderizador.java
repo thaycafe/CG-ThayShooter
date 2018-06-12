@@ -34,7 +34,7 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
     private GLUT glut;
     private GLAutoDrawable glDrawable;
     private double angulo, aspecto;
-    private float rotX, rotY, obsZ, nX, nY, rotX1, nZ, rotY1;
+    private float rotX, rotY, obsZ, rotX1, rotY1;
     private boolean luz, menupause, menuGameOver;
     private Random random, random2, random3, random4, random5;
     private int ctproj, timerP;
@@ -254,131 +254,131 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         obsZ += 2;
     }
 
-    public void projeteis(){
-        if(proj1.isAtivo()){
+    public void projeteis() {
+        if (proj1.isAtivo()) {
             proj1.formaProjetil(gl, glu);
-            proj1.pZ-=5;
+            proj1.pZ -= 5;
         }
-        if(proj2.isAtivo()){
+        if (proj2.isAtivo()) {
             proj2.formaProjetil(gl, glu);
-            proj2.pZ-=5;
+            proj2.pZ -= 5;
         }
-         if(proj3.isAtivo()){
+        if (proj3.isAtivo()) {
             proj3.formaProjetil(gl, glu);
-            proj3.pZ-=5;
+            proj3.pZ -= 5;
         }
-          if(proj4.isAtivo()){
+        if (proj4.isAtivo()) {
             proj4.formaProjetil(gl, glu);
-            proj4.pZ-=5;
+            proj4.pZ -= 5;
         }
-           if(proj5.isAtivo()){
+        if (proj5.isAtivo()) {
             proj5.formaProjetil(gl, glu);
-            proj5.pZ-=5;
+            proj5.pZ -= 5;
         }
-           if(proj6.isAtivo()){
+        if (proj6.isAtivo()) {
             proj6.formaProjetil(gl, glu);
-            proj6.pZ-=5;
+            proj6.pZ -= 5;
         }
-        if(proj7.isAtivo()){
+        if (proj7.isAtivo()) {
             proj8.formaProjetil(gl, glu);
-            proj8.pZ-=5;
+            proj8.pZ -= 5;
         }
-         if(proj8.isAtivo()){
+        if (proj8.isAtivo()) {
             proj8.formaProjetil(gl, glu);
-            proj8.pZ-=5;
+            proj8.pZ -= 5;
         }
-          if(proj9.isAtivo()){
+        if (proj9.isAtivo()) {
             proj9.formaProjetil(gl, glu);
-            proj9.pZ-=5;
+            proj9.pZ -= 5;
         }
-           if(proj10.isAtivo()){
+        if (proj10.isAtivo()) {
             proj10.formaProjetil(gl, glu);
-            proj10.pZ-=5;
+            proj10.pZ -= 5;
         }
-     }
+    }
 
-    public void statusproj(int n){
-         if(n==0){
-             proj1.setpX(nave.nX);
-             proj1.setpY(nave.nY);
-             proj1.setpZ(nave.nZ);
-             proj1.setAtivo(true);
-         }else if(n==1){
-             proj2.setpX(nave.nX);
-             proj2.setpY(nave.nY);
-             proj2.setpZ(nave.nZ);
-             proj2.setAtivo(true);
-         }else if(n==2){
-             proj3.setpX(nave.nX);
-             proj3.setpY(nave.nY);
-             proj3.setpZ(nave.nZ);
-             proj3.setAtivo(true);
-         }else if(n==3){
+    public void statusproj(int n) {
+        if (n == 0) {
+            proj1.setpX(nave.nX);
+            proj1.setpY(nave.nY);
+            proj1.setpZ(nave.nZ);
+            proj1.setAtivo(true);
+        } else if (n == 1) {
+            proj2.setpX(nave.nX);
+            proj2.setpY(nave.nY);
+            proj2.setpZ(nave.nZ);
+            proj2.setAtivo(true);
+        } else if (n == 2) {
+            proj3.setpX(nave.nX);
+            proj3.setpY(nave.nY);
+            proj3.setpZ(nave.nZ);
+            proj3.setAtivo(true);
+        } else if (n == 3) {
             proj4.setpX(nave.nX);
-             proj4.setpY(nave.nY);
-             proj4.setpZ(nave.nZ);
-             proj4.setAtivo(true);
-        }else if(n==4){
-             proj5.setpX(nave.nX);
-             proj5.setpY(nave.nY);
-             proj5.setpZ(nave.nZ);
-             proj5.setAtivo(true);
-         }else if(n==5){
-             proj6.setpX(nave.nX);
-             proj6.setpY(nave.nY);
-             proj6.setpZ(nave.nZ);
-             proj6.setAtivo(true);
-         }else if(n==6){
-             proj7.setpX(nave.nX);
-             proj7.setpY(nave.nY);
-             proj7.setpZ(nave.nZ);
-             proj7.setAtivo(true);
-         }else if(n==7){
-             proj8.setpX(nave.nX);
-             proj8.setpY(nave.nY);
-             proj8.setpZ(nave.nZ);
-             proj8.setAtivo(true);
-         }else if(n==8){
+            proj4.setpY(nave.nY);
+            proj4.setpZ(nave.nZ);
+            proj4.setAtivo(true);
+        } else if (n == 4) {
+            proj5.setpX(nave.nX);
+            proj5.setpY(nave.nY);
+            proj5.setpZ(nave.nZ);
+            proj5.setAtivo(true);
+        } else if (n == 5) {
+            proj6.setpX(nave.nX);
+            proj6.setpY(nave.nY);
+            proj6.setpZ(nave.nZ);
+            proj6.setAtivo(true);
+        } else if (n == 6) {
+            proj7.setpX(nave.nX);
+            proj7.setpY(nave.nY);
+            proj7.setpZ(nave.nZ);
+            proj7.setAtivo(true);
+        } else if (n == 7) {
+            proj8.setpX(nave.nX);
+            proj8.setpY(nave.nY);
+            proj8.setpZ(nave.nZ);
+            proj8.setAtivo(true);
+        } else if (n == 8) {
             proj9.setpX(nave.nX);
-             proj9.setpY(nave.nY);
-             proj9.setpZ(nave.nZ);
-             proj9.setAtivo(true);
-        }else if(n==9){
-             proj10.setpX(nave.nX);
-             proj10.setpY(nave.nY);
-             proj10.setpZ(nave.nZ);
-             proj10.setAtivo(true);
+            proj9.setpY(nave.nY);
+            proj9.setpZ(nave.nZ);
+            proj9.setAtivo(true);
+        } else if (n == 9) {
+            proj10.setpX(nave.nX);
+            proj10.setpY(nave.nY);
+            proj10.setpZ(nave.nZ);
+            proj10.setAtivo(true);
         }
-     }
+    }
 
     public void mostrarPlanets(int timer) {
         if (timer < 250) {
             if (timer == 1) {
-                planet.setPosZFinal(nZ - 400);
+                planet.setPosZFinal(nave.nZ - 400);
             }
             planet.renderizaPlaneta(gl, glu, "Terra");
         } else {
             if (timer >= 250 && timer < 500) {
                 if (timer == 250) {
-                    planet.setPosZFinal(nZ - 400);
+                    planet.setPosZFinal(nave.nZ - 400);
                 }
                 planet.renderizaPlaneta(gl, glu, "Mars");
             } else {
                 if (timer >= 500 && timer < 750) {
                     if (timer == 500) {
-                        planet.setPosZFinal(nZ - 400);
+                        planet.setPosZFinal(nave.nZ - 400);
                     }
                     planet.renderizaPlaneta(gl, glu, "Saturn");
                 } else {
                     if (timer >= 750 && timer < 1000) {
                         if (timer == 750) {
-                            planet.setPosZFinal(nZ - 400);
+                            planet.setPosZFinal(nave.nZ - 400);
                         }
                         planet.renderizaPlaneta(gl, glu, "Uranus");
                     } else {
                         if (timer >= 1000 && timer < 1250) {
                             if (timer == 1000) {
-                                planet.setPosZFinal(nZ - 400);
+                                planet.setPosZFinal(nave.nZ - 400);
                             }
                             planet.renderizaPlaneta(gl, glu, "Jupter");
                         } else {
@@ -402,13 +402,13 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
 
     }
 
-   @Override
+    @Override
     public void keyPressed(KeyEvent ke) {
         switch (ke.getKeyCode()) {
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
-                if(menupause == false){
-                    if(nave.nX<=-150){
+                if (menupause == false) {
+                    if (nave.nX <= -150) {
                         nave.nX = -150;
                     }
                     nave.nX -= 6;
@@ -417,8 +417,8 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
                 break;
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
-                if(menupause == false){
-                    if(nave.nX>=150){
+                if (menupause == false) {
+                    if (nave.nX >= 150) {
                         nave.nX = 150;
                     }
                     nave.nX += 6;
@@ -427,18 +427,18 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                if(menupause == false){    
-                    if(nave.nY>=80){
+                if (menupause == false) {
+                    if (nave.nY >= 80) {
                         nave.nY = 80;
                     }
                     nave.nY += 6;
                     rotY1 = 1;
-                }               
+                }
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
-                if(menupause == false){
-                    if(nave.nY<=-75){
+                if (menupause == false) {
+                    if (nave.nY <= -75) {
                         nave.nY = -75;
                     }
                     nave.nY -= 6;
@@ -465,7 +465,6 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         glDrawable.display();
     }
 
-
     @Override
     public void keyReleased(KeyEvent ke) {
         switch (ke.getKeyCode()) {
@@ -490,7 +489,7 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
 
     @Override
     public void mouseClicked(MouseEvent me) {
-          if(ctproj==9){
+        if (ctproj == 9) {
             ctproj = 0;
         }
         statusproj(ctproj);

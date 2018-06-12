@@ -3,7 +3,6 @@ package Planeta;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
-import com.jogamp.opengl.GL;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.glu.GLU;
@@ -14,9 +13,6 @@ import com.jogamp.opengl.util.texture.TextureIO;
 
 public class Planeta {
 
-    private GL2 gl;
-    private GLU glu;
-    private float planetZ;
     private Texture textura, texturaTerra, texturaMars, texturaUranus, texturaSaturn,
             texturaJupter;
     public float posX, posY;
@@ -40,30 +36,30 @@ public class Planeta {
 
 // Comandos de inicialização para textura da Terra
         try {
-            InputStream streamTerra = getClass().getResourceAsStream( "terra.jpg");
+            InputStream streamTerra = getClass().getResourceAsStream("terra.jpg");
             TextureData dataTerra = TextureIO.newTextureData(GLProfile.getDefault(),
-                    streamTerra, false,  "jpg");
+                    streamTerra, false, "jpg");
             texturaTerra = TextureIO.newTexture(dataTerra);
 
-            InputStream streamMars = getClass().getResourceAsStream( "Mars-small.jpg");
+            InputStream streamMars = getClass().getResourceAsStream("Mars-small.jpg");
             TextureData dataMars = TextureIO.newTextureData(GLProfile.getDefault(),
-                    streamMars, false,  "jpg");
+                    streamMars, false, "jpg");
             texturaMars = TextureIO.newTexture(dataMars);
 
-            InputStream streamSaturno = getClass().getResourceAsStream( "Saturn.jpg");
+            InputStream streamSaturno = getClass().getResourceAsStream("Saturn.jpg");
             TextureData dataSaturn = TextureIO.newTextureData(GLProfile.getDefault(),
                     streamSaturno, false, "jpg");
             texturaSaturn = TextureIO.newTexture(dataSaturn);
 
-            InputStream streamUranus = getClass().getResourceAsStream( "Uranus.jpg");
+            InputStream streamUranus = getClass().getResourceAsStream("Uranus.jpg");
             TextureData dataUranus = TextureIO.newTextureData(GLProfile.getDefault(),
-                    streamUranus, false,  "jpg");
+                    streamUranus, false, "jpg");
             texturaUranus = TextureIO.newTexture(dataUranus);
 
-            InputStream streamJupter = getClass().getResourceAsStream( "Jupter.jpg");
+            InputStream streamJupter = getClass().getResourceAsStream("Jupter.jpg");
 
             TextureData dataJupter = TextureIO.newTextureData(GLProfile.getDefault(),
-                    streamJupter, false,  "jpg");
+                    streamJupter, false, "jpg");
             texturaJupter = TextureIO.newTexture(dataJupter);
         } catch (IOException exc) {
             exc.printStackTrace();
@@ -95,7 +91,7 @@ public class Planeta {
 
     public void habilitarTextura(String text) {
         switch (text) {
-            case  "Terra":
+            case "Terra":
                 textura = texturaTerra;
                 posX = 250;
                 posY = 50;
