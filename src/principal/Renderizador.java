@@ -4,6 +4,7 @@ import Asteroide.Asteroide;
 import Inimigo.Inimigo;
 import MenuGameOver.GameOver;
 import MenuStart.MenuStart;
+import Nave.Explosao;
 import Nave.Nave;
 import Nave.Projetil;
 import Planeta.Planeta;
@@ -39,12 +40,12 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
     private Random random, random2, random3, random4, random5;
     private int ctproj, timerP;
     Asteroide aster = new Asteroide();
-    Asteroide aster2 = new Asteroide();
     MenuStart menu = new MenuStart();
     MenuPrincipal princ = new MenuPrincipal();
     GameOver gameover = new GameOver();
+    Explosao explosao = new Explosao();
     private int pont;
-
+    Colisao colisao  = new Colisao();
     JFrame x;
     FPSAnimator animator;
     public boolean pause;
@@ -93,7 +94,7 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
 
         gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         gl.glEnable(GL.GL_DEPTH_TEST);
-
+        explosao.textColisao();
         nave.texturaNave();
         planet.carregarTextura();
         proj2.textura();
@@ -140,6 +141,8 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
         defineIluminacao();
+        colisao.bateu(gl, glu, nave, aster, explosao);
+        colisao.bateu(gl, glu, nave, inimigo, explosao);
         inimigo.timer++;
         timerP++;
         aster.timer2++;
@@ -151,7 +154,9 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         movimento();
 
         gl.glPushMatrix();
+        menuGameOver = colisao.over;
         if (menuGameOver == true) {
+            animator.pause();
             gl.glPushMatrix();
             gl.glTranslatef(0, 0, nave.nZ + 100);
             gameover.TextGameOver(gl, glut, pont);
@@ -199,7 +204,6 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         gl.glPushMatrix();
         inimigo.renderizaNave(gl, glu);
         gl.glTranslatef(inimigo.posX, inimigo.posY, inimigo.posZ);
-        inimigo.posZ += 1;
         if (inimigo.timer == 200) {
             inimigo.reiniciar((random.nextInt(200) - 100), (random.nextInt(200) - 100), (nave.nZ - 300));
         }
@@ -248,7 +252,7 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         gl.glPopMatrix();
 
     }
-
+    
     public void movimento() {
         nave.nZ -= 2;
         obsZ += 2;

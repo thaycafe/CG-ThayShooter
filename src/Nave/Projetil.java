@@ -20,7 +20,8 @@ public class Projetil {
      public Projetil(){
          pX = 0;
          pY = 0;
-         pZ =0;
+         pZ =0;     
+         
          ativo = false;
      }
     
@@ -120,8 +121,5 @@ public void formaProjetil(GL2 gl, GLU glu) {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    
-    public void movimento(){
-        //pZ-=1;
-    }
+
 }
