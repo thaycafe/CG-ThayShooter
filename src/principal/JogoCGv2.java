@@ -51,9 +51,9 @@ public class JogoCGv2 implements GLEventListener {
 
     public static void main(String[] args) {
         MenuPrincipal obj = new MenuPrincipal();
-        obj.setSize(500, 300);      
+        obj.setSize(500, 300);
         obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        obj.setVisible(true); 
+        obj.setVisible(true);
         obj.getContentPane().setBackground(Color.black);
         obj.setLocationRelativeTo(null);
 
