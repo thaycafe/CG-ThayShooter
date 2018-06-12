@@ -1,6 +1,7 @@
 package principal;
 
 import Asteroide.Asteroide;
+import Estrelas.Estrelas;
 import Inimigo.Inimigo;
 import MenuGameOver.GameOver;
 import MenuStart.MenuStart;
@@ -37,7 +38,7 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
     private double angulo, aspecto;
     private float rotX, rotY, obsZ, rotX1, rotY1;
     private boolean luz, menupause, menuGameOver;
-    private Random random, random2, random3, random4, random5;
+    private Random random, random2, random3, random4, random5, randomEst;
     private int ctproj, timerP;
     Asteroide aster = new Asteroide();
     MenuStart menu = new MenuStart();
@@ -45,11 +46,51 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
     GameOver gameover = new GameOver();
     Explosao explosao = new Explosao();
     private int pont;
-    Colisao colisao  = new Colisao();
+    Colisao colisao = new Colisao();
     JFrame x;
     FPSAnimator animator;
     public boolean pause;
     Nave nave = new Nave();
+    Estrelas est1 = new Estrelas();
+    Estrelas est2 = new Estrelas();
+    Estrelas est3 = new Estrelas();
+    Estrelas est4 = new Estrelas();
+    Estrelas est5 = new Estrelas();
+    Estrelas est6 = new Estrelas();
+    Estrelas est7 = new Estrelas();
+    Estrelas est8 = new Estrelas();
+    Estrelas est9 = new Estrelas();
+    Estrelas est10 = new Estrelas();
+    Estrelas est11 = new Estrelas();
+    Estrelas est12 = new Estrelas();
+    Estrelas est13 = new Estrelas();
+    Estrelas est14 = new Estrelas();
+    Estrelas est15 = new Estrelas();
+    Estrelas est16 = new Estrelas();
+    Estrelas est17 = new Estrelas();
+    Estrelas est18 = new Estrelas();
+    Estrelas est19 = new Estrelas();
+    Estrelas est20 = new Estrelas();
+    Estrelas est21 = new Estrelas();
+    Estrelas est22 = new Estrelas();
+    Estrelas est23 = new Estrelas();
+    Estrelas est24 = new Estrelas();
+    Estrelas est25 = new Estrelas();
+    Estrelas est26 = new Estrelas();
+    Estrelas est27 = new Estrelas();
+    Estrelas est28 = new Estrelas();
+    Estrelas est29 = new Estrelas();
+    Estrelas est30 = new Estrelas();
+    Estrelas est31 = new Estrelas();
+    Estrelas est32 = new Estrelas();
+    Estrelas est33 = new Estrelas();
+    Estrelas est34 = new Estrelas();
+    Estrelas est35 = new Estrelas();
+    Estrelas est36 = new Estrelas();
+    Estrelas est37 = new Estrelas();
+    Estrelas est38 = new Estrelas();
+    Estrelas est39 = new Estrelas();
+
     Planeta planet = new Planeta();
     Projetil proj1 = new Projetil();
     Projetil proj2 = new Projetil();
@@ -61,6 +102,7 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
     Projetil proj8 = new Projetil();
     Projetil proj9 = new Projetil();
     Projetil proj10 = new Projetil();
+
     Inimigo inimigo = new Inimigo();
 
     public Renderizador(FPSAnimator animator, JFrame x) {
@@ -152,6 +194,50 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         pont++;
         especificaParametrosVisualizacao();
         movimento();
+
+        gl.glPushMatrix();
+
+        est1.formaEstrela(gl, glu);
+        est2.formaEstrela(gl, glu);
+        est3.formaEstrela(gl, glu);
+        est4.formaEstrela(gl, glu);
+        est5.formaEstrela(gl, glu);
+        est6.formaEstrela(gl, glu);
+        est7.formaEstrela(gl, glu);
+        est8.formaEstrela(gl, glu);
+        est9.formaEstrela(gl, glu);
+        est10.formaEstrela(gl, glu);
+        est11.formaEstrela(gl, glu);
+        est12.formaEstrela(gl, glu);
+        est13.formaEstrela(gl, glu);
+        est14.formaEstrela(gl, glu);
+        est15.formaEstrela(gl, glu);
+        est16.formaEstrela(gl, glu);
+        est17.formaEstrela(gl, glu);
+        est18.formaEstrela(gl, glu);
+        est19.formaEstrela(gl, glu);
+        est20.formaEstrela(gl, glu);
+        est21.formaEstrela(gl, glu);
+        est22.formaEstrela(gl, glu);
+        est23.formaEstrela(gl, glu);
+        est24.formaEstrela(gl, glu);
+        est25.formaEstrela(gl, glu);
+        est26.formaEstrela(gl, glu);
+        est27.formaEstrela(gl, glu);
+        est28.formaEstrela(gl, glu);
+        est29.formaEstrela(gl, glu);
+        est30.formaEstrela(gl, glu);
+        est31.formaEstrela(gl, glu);
+        est32.formaEstrela(gl, glu);
+        est33.formaEstrela(gl, glu);
+        est34.formaEstrela(gl, glu);
+        est35.formaEstrela(gl, glu);
+        est36.formaEstrela(gl, glu);
+        est37.formaEstrela(gl, glu);
+        est38.formaEstrela(gl, glu);
+        est39.formaEstrela(gl, glu);
+
+        gl.glPopMatrix();
 
         gl.glPushMatrix();
         menuGameOver = colisao.over;
@@ -252,9 +338,48 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         gl.glPopMatrix();
 
     }
-    
+
     public void movimento() {
         nave.nZ -= 2;
+        est1.setZ(est1.getZ() - 2);
+        est2.setZ(est2.getZ() - 2);
+        est3.setZ(est3.getZ() - 2);
+        est4.setZ(est4.getZ() - 2);
+        est5.setZ(est5.getZ() - 2);
+        est6.setZ(est6.getZ() - 2);
+        est7.setZ(est7.getZ() - 2);
+        est8.setZ(est8.getZ() - 2);
+        est9.setZ(est9.getZ() - 2);
+        est10.setZ(est10.getZ() - 2);
+        est11.setZ(est11.getZ() - 2);
+        est12.setZ(est12.getZ() - 2);
+        est13.setZ(est13.getZ() - 2);
+        est14.setZ(est14.getZ() - 2);
+        est15.setZ(est15.getZ() - 2);
+        est16.setZ(est16.getZ() - 2);
+        est17.setZ(est17.getZ() - 2);
+        est18.setZ(est18.getZ() - 2);
+        est19.setZ(est19.getZ() - 2);
+        est20.setZ(est20.getZ() - 2);
+        est21.setZ(est21.getZ() - 2);
+        est22.setZ(est22.getZ() - 2);
+        est23.setZ(est23.getZ() - 2);
+        est24.setZ(est24.getZ() - 2);
+        est25.setZ(est25.getZ() - 2);
+        est26.setZ(est26.getZ() - 2);
+        est27.setZ(est27.getZ() - 2);
+        est28.setZ(est28.getZ() - 2);
+        est29.setZ(est29.getZ() - 2);
+        est30.setZ(est30.getZ() - 2);
+        est31.setZ(est31.getZ() - 2);
+        est32.setZ(est32.getZ() - 2);
+        est33.setZ(est33.getZ() - 2);
+        est34.setZ(est34.getZ() - 2);
+        est35.setZ(est35.getZ() - 2);
+        est36.setZ(est36.getZ() - 2);
+        est37.setZ(est37.getZ() - 2);
+        est38.setZ(est38.getZ() - 2);
+        est39.setZ(est39.getZ() - 2);
         obsZ += 2;
     }
 
