@@ -4,6 +4,7 @@ import Asteroide.Asteroide;
 import Estrelas.Estrelas;
 import Inimigo.Inimigo;
 import MenuGameOver.GameOver;
+import MenuGameOver.Quadrado;
 import MenuStart.MenuStart;
 import Nave.Explosao;
 import Nave.Nave;
@@ -45,6 +46,7 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
     MenuPrincipal princ = new MenuPrincipal();
     GameOver gameover = new GameOver();
     Explosao explosao = new Explosao();
+    Quadrado quads = new Quadrado();
     private int pont;
     Colisao colisao = new Colisao();
     JFrame x;
@@ -151,6 +153,7 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         proj10.textura();
         inimigo.texturaInimigo();
         aster.text();
+        quads.textquads();
 
         try {
             x.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon(getClass().getResource("/Nave/mira.png")).getImage(), new Point(0, 0), "custom cursor"));
@@ -244,12 +247,10 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         if (menuGameOver == true) {
             animator.pause();
             gl.glPushMatrix();
+            quads.Quads(gl,glut,glu, nave.nZ);
             gl.glTranslatef(0, 0, nave.nZ + 100);
             gameover.TextGameOver(gl, glut, pont);
             gl.glPopMatrix();
-            gl.glBegin(GL_QUADS);
-
-            gl.glEnd();
         }
         gl.glPopMatrix();
 
@@ -264,6 +265,7 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         gl.glPushMatrix();
         if (menupause == true) {
             gl.glPushMatrix();
+            quads.Quads(gl, glut, glu, nave.nZ);
             gl.glTranslatef(0, 0, nave.nZ + 100);
             menu.TextPause(gl, glut, pont);
             gl.glPopMatrix();
@@ -623,16 +625,13 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         }
         statusproj(ctproj);
         ctproj++;
-        System.out.printf("X: %d", me.getX());
-        System.out.printf("Y: %d", me.getY());
-        System.out.println("");
         if (menupause == true) {
-            if (me.getX() >= 604 && me.getX() <= 704 && me.getY() >= 227 && me.getY() <= 258) {
+            if (me.getX() >= 739 && me.getX() <= 843 && me.getY() >= 307 && me.getY() <= 335) {
                 animator.resume();
                 menupause = false;
             }
 
-            if (me.getX() >= 585 && me.getX() <= 708 && me.getY() >= 291 && me.getY() <= 316) {
+            if (me.getX() >= 747 && me.getX() <= 864 && me.getY() >= 367 && me.getY() <= 413) {
                 System.gc();
                 for (Window window : Window.getWindows()) {
                     window.dispose();
@@ -640,38 +639,35 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
                 JogoCGv2 app = new JogoCGv2();
             }
 
-            if (me.getX() >= 580 && me.getX() <= 634 && me.getY() >= 369 && me.getY() <= 396) {;
+            if (me.getX() >= 737 && me.getX() <= 787 && me.getY() >= 453 && me.getY() <= 484) {;
                 System.exit(0);
             }
         }
 
         if (menuGameOver == true) {
             animator.pause();
-            if (me.getX() >= 509 && me.getX() <= 704 && me.getY() >= 206 && me.getY() <= 237) {
+            if (me.getX() >= 650 && me.getX() <= 849 && me.getY() >= 327 && me.getY() <= 352) {
                 System.gc();
                 for (Window window : Window.getWindows()) {
                     window.dispose();
                 }
-                System.out.println("deu certo");
                 JogoCGv2 app = new JogoCGv2();
             }
-            if (me.getX() >= 503 && me.getX() <= 563 && me.getY() >= 367 && me.getY() <= 400) {;
-                System.out.println("deu certo 2");
+            if (me.getX() >= 646 && me.getX() <=697 && me.getY() >= 453 && me.getY() <= 483) {;
                 System.exit(0);
             }
-            if (me.getX() >= 522 && me.getX() <= 788 && me.getY() >= 305 && me.getY() <= 343) {;
+            if (me.getX() >= 642 && me.getX() <=911 && me.getY() >= 385 && me.getY() <= 415) {;
                 System.gc();
                 for (Window window : Window.getWindows()) {
                     window.dispose();
                 }
                 MenuPrincipal obj = new MenuPrincipal();
-                obj.setSize(500, 300);
+                obj.setSize(500, 370);
                 obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 obj.setVisible(true);
                 obj.getContentPane().setBackground(Color.black);
                 obj.setLocationRelativeTo(null);
             }
-
         }
 
     }

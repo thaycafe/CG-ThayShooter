@@ -19,12 +19,12 @@ public class MenuStart {
             for (int i=0; i<3;i++){
                 gl.glRasterPos2i(x,y); // ajusta a posição na tela
                 glut.glutBitmapString(5, msgs[i]);
-                y+= 10;
+                y+= 8;
             }
-            gl.glRasterPos2i(-5,25);
+            gl.glRasterPos2i(-5,20);
             glut.glutBitmapString(5, score);
             
-            gl.glRasterPos2i(5,25);
+            gl.glRasterPos2i(5,20);
             glut.glutBitmapString(5, Integer.toString(p));
                                     
         gl.glPopMatrix();

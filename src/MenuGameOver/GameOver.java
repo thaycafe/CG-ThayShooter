@@ -13,19 +13,23 @@ public class GameOver {
             "Voltar ao Menu Principal",
             "Tentar Novamente"};
            String score = "Pontuação: ";
+           String over = "Game Over";
            
            int x = -15, y=-5;
             for (int i=0; i<3;i++){
                 gl.glRasterPos2i(x,y); // ajusta a posição na tela
                 glut.glutBitmapString(5, msgs[i]);
-                y+= 10;
+                y+= 7;
             }
-            gl.glRasterPos2i(-15,25);
+            gl.glRasterPos2i(-15,15);
             glut.glutBitmapString(5, score);
             
-            gl.glRasterPos2i(5,25);
+            gl.glRasterPos2i(-1,15);
             glut.glutBitmapString(5, Integer.toString(p));
-           
+                       
+            gl.glRasterPos2i(-5,23);
+            glut.glutBitmapString(5, over);
+            
         gl.glPopMatrix();   
            
            
