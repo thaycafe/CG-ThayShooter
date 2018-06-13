@@ -538,7 +538,8 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         switch (ke.getKeyCode()) {
             case KeyEvent.VK_LEFT:
             case KeyEvent.VK_A:
-                if (menupause == false) {
+                if (menuGameOver == true || menupause == true) {                    
+                }else{
                     if (nave.nX <= -150) {
                         nave.nX = -150;
                     }
@@ -548,7 +549,8 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
                 break;
             case KeyEvent.VK_RIGHT:
             case KeyEvent.VK_D:
-                if (menupause == false) {
+                if (menuGameOver == true || menupause == true) {
+                }else{
                     if (nave.nX >= 150) {
                         nave.nX = 150;
                     }
@@ -558,7 +560,8 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_W:
-                if (menupause == false) {
+                if (menuGameOver == true || menupause == true) {                    
+                }else{
                     if (nave.nY >= 80) {
                         nave.nY = 80;
                     }
@@ -568,7 +571,8 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
                 break;
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S:
-                if (menupause == false) {
+                if (menuGameOver == true || menupause == true) {
+                }else{                    
                     if (nave.nY <= -75) {
                         nave.nY = -75;
                     }
