@@ -68,7 +68,6 @@ public class Colisao {
             if (varNave.nX + 8 >= varInimigo.posX - 9.5 && varNave.nX + 8 <= varInimigo.posX + 9.5
                     || varNave.nX - 8f >= varInimigo.posX - 9.5 && varNave.nX - 8 <= varInimigo.posX + 9.5
                     || varNave.nX >= varInimigo.posX - 9.5 && varNave.nX <= varInimigo.posX + 9.5) {
-                System.out.println("bateux");
                 if (varNave.nY + 8 >= varInimigo.posY - 9.5 && varNave.nY + 8 <= varInimigo.posY + 9.5
                         || varNave.nY - 8 >= varInimigo.posY - 9.5 && varNave.nY - 8 <= varInimigo.posY + 9.5
                         || varNave.nY >= varInimigo.posY - 9.5 && varNave.nY <= varInimigo.posY + 9.5) {
@@ -82,7 +81,6 @@ public class Colisao {
         if (varProjetil.pZ == varAsteroide.Z) {
             if (varProjetil.pX >= varAsteroide.X - 5.5 && varProjetil.pX <= varAsteroide.X + 5.5) {
                 if (varProjetil.pY >= varAsteroide.X - 5.5 && varProjetil.pY <= varAsteroide.Y + 5.5) {
-                    System.out.println("acertou");
                     varAsteroide.reinicia((random.nextInt(200) - 100), (random.nextInt(200) - 100), (varNave.nZ - 300));
                     somaPontuacao=true;
                 }
@@ -91,7 +89,6 @@ public class Colisao {
         if (varProjetil.pZ == varAsteroide.Z2) {
             if (varProjetil.pX >= varAsteroide.X2 - 5.5 && varProjetil.pX <= varAsteroide.X2 + 5.5) {
                 if (varProjetil.pY >= varAsteroide.X2 - 5.5 && varProjetil.pY <= varAsteroide.Y2 + 5.5) {
-                    System.out.println("acertou");
                     varAsteroide.reinicia((random.nextInt(200) - 100), (random.nextInt(200) - 100), (varNave.nZ - 300));
                     somaPontuacao=true;
                 }
@@ -100,7 +97,6 @@ public class Colisao {
         if (varProjetil.pZ == varAsteroide.Z3) {
             if (varProjetil.pX >= varAsteroide.X3 - 5.5 && varProjetil.pX <= varAsteroide.X3 + 5.5) {
                 if (varProjetil.pY >= varAsteroide.X3 - 5.5 && varProjetil.pY <= varAsteroide.Y3 + 5.5) {
-                    System.out.println("acertou");
                     varAsteroide.reinicia((random.nextInt(200) - 100), (random.nextInt(200) - 100), (varNave.nZ - 300));
                     somaPontuacao=true;
                 }
@@ -109,7 +105,6 @@ public class Colisao {
         if (varProjetil.pZ == varAsteroide.Z4) {
             if (varProjetil.pX >= varAsteroide.X4 - 5.5 && varProjetil.pX <= varAsteroide.X4 + 5.5) {
                 if (varProjetil.pY >= varAsteroide.X4 - 5.5 && varProjetil.pY <= varAsteroide.Y4 + 5.5) {
-                    System.out.println("acertou");
                     varAsteroide.reinicia((random.nextInt(200) - 100), (random.nextInt(200) - 100), (varNave.nZ - 300));
                     somaPontuacao=true;
                 }
@@ -121,7 +116,6 @@ public class Colisao {
         if (varProjetil.pZ == varInimigo.posZ) {
             if (varProjetil.pX >= varInimigo.posX - 9.5 && varProjetil.pX <= varInimigo.posX + 9.5) {
                 if (varProjetil.pY >= varInimigo.posX - 9.5 && varProjetil.pY <= varInimigo.posY + 9.5) {
-                    System.out.println("acertou");
                     varInimigo.reiniciar((random.nextInt(200) - 100), (random.nextInt(200) - 100), (varNave.nZ - 300));
                     somaPontuacao=true;
                     
