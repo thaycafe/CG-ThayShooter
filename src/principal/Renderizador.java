@@ -240,6 +240,10 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         est39.formaEstrela(gl, glu);
 
         gl.glPopMatrix();
+        if(colisao.somaPontuacao==true){
+            pont+=2000;
+            colisao.somaPontuacao=false;
+        }
 
         gl.glPushMatrix();
         menuGameOver = colisao.over;
@@ -523,26 +527,26 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
     public void Colisao(){
         colisao.bateu(gl, glu, nave, aster, explosao);
         colisao.bateu(gl, glu, nave, inimigo, explosao);
-        colisao.acertou(proj1, aster);
-        colisao.acertou(proj2, aster);
-        colisao.acertou(proj3, aster);
-        colisao.acertou(proj4, aster);
-        colisao.acertou(proj5, aster);
-        colisao.acertou(proj6, aster);
-        colisao.acertou(proj7, aster);
-        colisao.acertou(proj8, aster);
-        colisao.acertou(proj9, aster);
-        colisao.acertou(proj10, aster);
-        colisao.acertou(proj1, inimigo);
-        colisao.acertou(proj2, inimigo);
-        colisao.acertou(proj3, inimigo);
-        colisao.acertou(proj4, inimigo);
-        colisao.acertou(proj5, inimigo);
-        colisao.acertou(proj6, inimigo);
-        colisao.acertou(proj7, inimigo);
-        colisao.acertou(proj8, inimigo);
-        colisao.acertou(proj9, inimigo);
-        colisao.acertou(proj10, inimigo);
+        colisao.acertou(proj1, aster, nave);
+        colisao.acertou(proj2, aster, nave);
+        colisao.acertou(proj3, aster, nave);
+        colisao.acertou(proj4, aster, nave);
+        colisao.acertou(proj5, aster, nave);
+        colisao.acertou(proj6, aster, nave);
+        colisao.acertou(proj7, aster, nave);
+        colisao.acertou(proj8, aster, nave);
+        colisao.acertou(proj9, aster, nave);
+        colisao.acertou(proj10, aster, nave);
+        colisao.acertou(proj1, inimigo, nave);
+        colisao.acertou(proj2, inimigo, nave);
+        colisao.acertou(proj3, inimigo, nave);
+        colisao.acertou(proj4, inimigo, nave);
+        colisao.acertou(proj5, inimigo, nave);
+        colisao.acertou(proj6, inimigo, nave);
+        colisao.acertou(proj7, inimigo, nave);
+        colisao.acertou(proj8, inimigo, nave);
+        colisao.acertou(proj9, inimigo, nave);
+        colisao.acertou(proj10, inimigo, nave);
     }
 
 

@@ -7,10 +7,14 @@ import Nave.Nave;
 import Nave.Projetil;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.glu.GLU;
+import java.util.Random;
 
 public class Colisao {
+     Random random = new Random();
+     
 
     public boolean over = false;
+    public boolean somaPontuacao;
 
     public void bateu(GL2 gl, GLU glu, Nave varNave, Asteroide varAsteroide, Explosao varExplosao) {
         if (varNave.nZ+10 == varAsteroide.Z) {
@@ -74,21 +78,52 @@ public class Colisao {
         }
     }
     
-    public void acertou(Projetil varProjetil, Asteroide varAsteroide){
+    public void acertou(Projetil varProjetil, Asteroide varAsteroide, Nave varNave){
         if (varProjetil.pZ == varAsteroide.Z) {
             if (varProjetil.pX >= varAsteroide.X - 5.5 && varProjetil.pX <= varAsteroide.X + 5.5) {
                 if (varProjetil.pY >= varAsteroide.X - 5.5 && varProjetil.pY <= varAsteroide.Y + 5.5) {
                     System.out.println("acertou");
+                    varAsteroide.reinicia((random.nextInt(200) - 100), (random.nextInt(200) - 100), (varNave.nZ - 300));
+                    somaPontuacao=true;
+                }
+            }
+        }
+        if (varProjetil.pZ == varAsteroide.Z2) {
+            if (varProjetil.pX >= varAsteroide.X2 - 5.5 && varProjetil.pX <= varAsteroide.X2 + 5.5) {
+                if (varProjetil.pY >= varAsteroide.X2 - 5.5 && varProjetil.pY <= varAsteroide.Y2 + 5.5) {
+                    System.out.println("acertou");
+                    varAsteroide.reinicia((random.nextInt(200) - 100), (random.nextInt(200) - 100), (varNave.nZ - 300));
+                    somaPontuacao=true;
+                }
+            }
+        }
+        if (varProjetil.pZ == varAsteroide.Z3) {
+            if (varProjetil.pX >= varAsteroide.X3 - 5.5 && varProjetil.pX <= varAsteroide.X3 + 5.5) {
+                if (varProjetil.pY >= varAsteroide.X3 - 5.5 && varProjetil.pY <= varAsteroide.Y3 + 5.5) {
+                    System.out.println("acertou");
+                    varAsteroide.reinicia((random.nextInt(200) - 100), (random.nextInt(200) - 100), (varNave.nZ - 300));
+                    somaPontuacao=true;
+                }
+            }
+        }
+        if (varProjetil.pZ == varAsteroide.Z4) {
+            if (varProjetil.pX >= varAsteroide.X4 - 5.5 && varProjetil.pX <= varAsteroide.X4 + 5.5) {
+                if (varProjetil.pY >= varAsteroide.X4 - 5.5 && varProjetil.pY <= varAsteroide.Y4 + 5.5) {
+                    System.out.println("acertou");
+                    varAsteroide.reinicia((random.nextInt(200) - 100), (random.nextInt(200) - 100), (varNave.nZ - 300));
+                    somaPontuacao=true;
                 }
             }
         }
     }
     
-    public void acertou(Projetil varProjetil, Inimigo varInimigo){
+    public void acertou(Projetil varProjetil, Inimigo varInimigo, Nave varNave){
         if (varProjetil.pZ == varInimigo.posZ) {
             if (varProjetil.pX >= varInimigo.posX - 9.5 && varProjetil.pX <= varInimigo.posX + 9.5) {
                 if (varProjetil.pY >= varInimigo.posX - 9.5 && varProjetil.pY <= varInimigo.posY + 9.5) {
                     System.out.println("acertou");
+                    varInimigo.reiniciar((random.nextInt(200) - 100), (random.nextInt(200) - 100), (varNave.nZ - 300));
+                    somaPontuacao=true;
                     
                 }
             }
