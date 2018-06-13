@@ -186,8 +186,7 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
         gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity();
         defineIluminacao();
-        colisao.bateu(gl, glu, nave, aster, explosao);
-        colisao.bateu(gl, glu, nave, inimigo, explosao);
+        Colisao();
         inimigo.timer++;
         timerP++;
         aster.timer2++;
@@ -521,6 +520,31 @@ public class Renderizador implements GLEventListener, KeyListener, MouseListener
             }
         }
     }
+    public void Colisao(){
+        colisao.bateu(gl, glu, nave, aster, explosao);
+        colisao.bateu(gl, glu, nave, inimigo, explosao);
+        colisao.acertou(proj1, aster);
+        colisao.acertou(proj2, aster);
+        colisao.acertou(proj3, aster);
+        colisao.acertou(proj4, aster);
+        colisao.acertou(proj5, aster);
+        colisao.acertou(proj6, aster);
+        colisao.acertou(proj7, aster);
+        colisao.acertou(proj8, aster);
+        colisao.acertou(proj9, aster);
+        colisao.acertou(proj10, aster);
+        colisao.acertou(proj1, inimigo);
+        colisao.acertou(proj2, inimigo);
+        colisao.acertou(proj3, inimigo);
+        colisao.acertou(proj4, inimigo);
+        colisao.acertou(proj5, inimigo);
+        colisao.acertou(proj6, inimigo);
+        colisao.acertou(proj7, inimigo);
+        colisao.acertou(proj8, inimigo);
+        colisao.acertou(proj9, inimigo);
+        colisao.acertou(proj10, inimigo);
+    }
+
 
     @Override
     public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
